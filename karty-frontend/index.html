@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Karty proti lidskosti</title>
+	<link href="./src/assets/fav.png" rel="shortcut icon" type="image/x-icon" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<meta name="robots" content="index, follow" />
+	<meta name="generator" content="Sublime Text" />
+	<meta name="description" content="Karetní hra Karty proti lidskosti v elektronické podobě." />
+	<meta name="author" content="Martin Kadlec" />
+
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<style>
+		@font-face {
+		    font-family: 'Montserrat';
+		    src: url('./src/assets/montserrat_regular.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		    
+		@font-face {
+		    font-family: 'Montserrat Bold';
+		    src: url('./src/assets/montserrat_bold.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+
+		html,
+		body {
+		  min-height: 100%;
+		}
+		html {
+		  font-size: 100%;
+		}
+		body {
+		  background: url("./src/assets/brickwall.png") repeat;
+		  min-width: 100%;
+		  font-family: 'helvetica neue', helvetica, Arial, sans-serif;
+		}
+		main {
+		  min-height: 1000px;
+		}
+		header {
+		  width: 100%;
+		  background: black;
+		  color: white;
+		  font-size: 1.6rem;
+		  padding: 2rem 3rem;
+		  font-family: 'Montserrat Bold', serif;
+		}
+		footer {
+		  padding: 0.5rem 0;
+		  text-align: center;
+		  color: #999;
+		  font-size: 0.5rem;
+		}
+		.preloader {
+		  display: block;
+		  margin: 4rem auto;
+		}
+		.inner {
+		  min-width: 80rem;
+		  position: relative;
+		}
+		.center {
+		  text-align: center;
+		}
+		@media only screen and (min-device-pixel-ratio: 1.5) {
+		  body {
+		    background-image: url("./src/assets/brickwall_@2X.png");
+		  }
+		  header {
+		    background-image: url("./src/assets/noisy_net_@2X.png");
+		  }
+		}
+	</style>
+
+
+	<!--[if lt IE 9]>
+	  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<header>
+		Karty proti lidskosti
+	</header>
+
+	<main>
+		<div id="content">
+			<div class="container inner">
+				<img src="./src/assets/preloader.gif" class="preloader" />
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container inner">
+			<div class="row">
+				<div class="col-xs-12">
+					Copyright 2016 Martin Kadlec
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="./build/main.js"></script>
+</body>
+</html>

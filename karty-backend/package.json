@@ -1,0 +1,17 @@
+{
+  "name": "hockey-backend",
+  "version": "0.0.1",
+  "description": "Backend for nhl app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "~4.13.0",
+    "socket.io": "~1.3.5",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "coffee index.coffee"
+  },
+  "author": "Martin Kadlec",
+  "license": "ISC"
+}
