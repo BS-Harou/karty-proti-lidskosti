@@ -18,6 +18,7 @@ module.exports = React.createClass
 
 	handleClick: ->
 		@props.didClick? @props.pickId
+		return
 
 	getFullClassName: ->
 		classes = [css['card-group']].concat @props['customClassNames']

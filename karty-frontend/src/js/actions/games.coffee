@@ -73,12 +73,12 @@ actions =
 		} 
 		type: types.PICK_CARD
 
-	pickWinner: (id, card) ->
+	pickWinner: (id, userId) ->
 		app.socket.emit 'data', { 
 			endpoint: '/games/winner'
 			value:
 				gameId: id
-				card: card
+				userId: userId
 		} 
 		type: types.PICK_WINNER
 	  

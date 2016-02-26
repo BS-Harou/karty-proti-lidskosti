@@ -36,7 +36,8 @@ pickCard = (data, user) ->
 
 pickWinner = (data, user) ->
 	return no unless game = gameStore.getGame data.gameId
-	game.pickWinner parseInt(data.card), user.id
+	console.log 'USER ID: ', data.userId
+	game.pickWinner data.userId, user.id
 
 module.exports =
 	list: (data, response) ->

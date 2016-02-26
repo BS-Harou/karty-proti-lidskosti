@@ -1,6 +1,7 @@
 React = require 'react'
 ReactDOM = require 'react-dom'
 PureRenderMixin = require 'react-addons-pure-render-mixin'
+Score = require './score'
 
 css = require '../css/result.styl'
 
@@ -25,9 +26,9 @@ module.exports = React.createClass
 		if me?.master
 			destroyGameBtn = <div className="btn btn-danger" onClick={@handleDestroyGame}>Zrušit hru</div>
 
-		<div>
-			<div className={css['player-list']}>
-				{players}
+		<div className={css['result']}>
+			<Score game={@props.game} user={@props.user} />
+			<div className={css['buttons']}>
+				{destroyGameBtn}
 			</div>
-			{destroyGameBtn}
 		</div>

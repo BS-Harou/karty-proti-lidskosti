@@ -11,6 +11,9 @@ module.exports = React.createClass
 
 	displayName: 'Login'
 
+	componentDidMount: ->
+		@refs.nickname.focus()
+
 	handleSubmit: (ev) ->
 		ev.preventDefault()
 		nickname = @refs['nickname'].value.trim()
@@ -19,9 +22,19 @@ module.exports = React.createClass
 
 	render: ->
 		<div className={css['login']}>
-			<form onSubmit={@handleSubmit}>
-				<label className={css['label']} htmlFor="nickname">Přezdívka:</label>
-				<input className={css['input']} id="nickname" name="nickname" ref="nickname" />
-				<input type="submit" className={css['button']} value="Vstoupit" />
+			<form onSubmit={@handleSubmit} className={css['form'] + ' form-horizontal'}>
+				<div className={css['heading']}>VSTOUPIT DO HRY</div>
+				<div className="form-group">
+					<div className="col-sm-12">
+						<input className={css['input'] + ' form-control'} id="nickname" name="nickname" ref="nickname" placeholder="Přezdívka" tabindex="1" />
+					</div>
+				</div>
+				<div className="form-group">
+					<div className="col-sm-12">
+						<button type="submit" className={css['button'] + ' btn btn-lg btn-primary'}>
+							Vstoupit
+						</button>
+					</div>
+				</div>
 			</form>
 		</div>

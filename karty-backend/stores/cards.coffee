@@ -54,6 +54,10 @@ module.exports =
 	getBlackCards: ->
 		return toMap blackCards, 'id'
 
+	getCard: (cardId) ->
+		map = toMap allCards, 'id'
+		map[cardId]
+
 	getWhiteDeck: ->
 		new Deck @getWhiteCards()
 

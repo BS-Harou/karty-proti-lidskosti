@@ -16,6 +16,7 @@ module.exports = React.createClass
 
 	handleClick: ->
 		@props.didClick? @props.id
+		return
 
 	render: ->
 		classes = [css['card-box']].concat @props['customClassNames']
