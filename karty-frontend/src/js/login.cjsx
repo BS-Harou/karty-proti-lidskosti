@@ -18,15 +18,28 @@ module.exports = React.createClass
 		ev.preventDefault()
 		nickname = @refs['nickname'].value.trim()
 		return unless nickname.length > 2
-		@props.loginUser nickname
+		@props.actions.loginUser nickname
+
+	dismissError: ->
+		@props.actions.dismissError()
+		return
+
+	renderError: ->
+		return null unless error = @props.user.error
+
+		<div className="alert alert-info alert-dismissible" role="alert">
+		  <button type="button" className="close" onClick={@dismissError} aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <strong>Chybička!</strong> {@props.user.error}
+		</div>
 
 	render: ->
 		<div className={css['login']}>
 			<form onSubmit={@handleSubmit} className={css['form'] + ' form-horizontal'}>
 				<div className={css['heading']}>VSTOUPIT DO HRY</div>
+				{@renderError()}
 				<div className="form-group">
 					<div className="col-sm-12">
-						<input className={css['input'] + ' form-control'} id="nickname" name="nickname" ref="nickname" placeholder="Přezdívka" tabindex="1" />
+						<input className={css['input'] + ' form-control'} id="nickname" name="nickname" ref="nickname" placeholder="Přezdívka" tabIndex="1" />
 					</div>
 				</div>
 				<div className="form-group">

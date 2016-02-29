@@ -16,72 +16,64 @@
 	<style>
 		@font-face {
 		    font-family: 'Montserrat';
-		    src: url('./src/assets/montserrat_regular.woff') format('woff');
 		    font-weight: normal;
 		    font-style: normal;
+		    src: url('./src/assets/montserrat_regular.woff') format('woff');
 		}
 		    
 		@font-face {
 		    font-family: 'Montserrat Bold';
-		    src: url('./src/assets/montserrat_bold.woff') format('woff');
 		    font-weight: normal;
 		    font-style: normal;
+		    src: url('./src/assets/montserrat_bold.woff') format('woff');
 		}
 
 		html,
 		body {
-		  min-height: 100%;
+			min-height: 100%;
 		}
 		html {
-		  font-size: 100%;
+			font-size: 100%;
 		}
 		body {
-		  background: url("./src/assets/brickwall.png") repeat;
-		  min-width: 100%;
-		  font-family: 'helvetica neue', helvetica, Arial, sans-serif;
+			background: url("./src/assets/brickwall.png") repeat;
+			font-family: 'helvetica neue', helvetica, Arial, sans-serif;
+			min-width: 100%;
 		}
-		/*main {
-		  min-height: 1000px;
-		}*/
 		header {
-		  width: 100%;
-		  background: black;
-		  color: white;
-		  font-size: 1.6rem;
-		  line-height: 2rem;
-		  padding: 2rem 3rem;
-		  font-family: 'Montserrat Bold', serif;
+			background: black;
+			color: white;
+			font-family: 'Montserrat Bold', serif;
+			font-size: 1.6rem;
+			line-height: 2rem;
+			padding: 2rem 3rem;
+			width: 100%;
 		}
-		/*footer {
-		  padding: 0.5rem 0;
-		  text-align: center;
-		  color: #999;
-		  font-size: 0.5rem;
-		}*/
 		.preloader {
-		  display: block;
-		  margin: 4rem auto;
+			display: block;
+			margin: 4rem auto;
 		}
 		.inner {
-		  min-width: 80rem;
-		  position: relative;
+			min-width: 80rem;
+			position: relative;
 		}
 		.center {
-		  text-align: center;
+			text-align: center;
 		}
 		@media only screen and (min-device-pixel-ratio: 1.5) {
-		  body {
-		    background-image: url("./src/assets/brickwall_@2X.png");
-		  }
-		  header {
-		    background-image: url("./src/assets/noisy_net_@2X.png");
-		  }
+			body {
+				background-image: url("./src/assets/brickwall_@2X.png");
+			}
+			header {
+				background-image: url("./src/assets/noisy_net_@2X.png");
+			}
 		}
 	</style>
 
 
 	<!--[if lt IE 9]>
-	  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.5/es5-shim.min.js"></script>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -107,7 +99,6 @@
 			</div>
 		</div>
 	</footer>-->
-
 	<script src="./build/main.js"></script>
 </body>
 </html>

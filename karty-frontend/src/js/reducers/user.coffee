@@ -4,6 +4,7 @@ initialState =
 	isFetching: no
 	didInvalidate: no
 	data: {}
+	error: null
 	gameId: null
 
 module.exports = (state = initialState, action) ->
@@ -30,6 +31,7 @@ module.exports = (state = initialState, action) ->
 			Object.assign({}, state,
 				isFetching: no
 				didInvalidate: no
+				error: null
 				data: action.data
 				lastUpdated: action.receivedAt
 			)
@@ -56,6 +58,20 @@ module.exports = (state = initialState, action) ->
 				data: {}
 				gameId: null
 				lastUpdated: action.receivedAt
+			)
+
+		when actions.FAILED_LOGIN
+			Object.assign({}, state,
+				isFetching: no
+				didInvalidate: no
+				data: {}
+				gameId: null
+				error: action.errorMessage
+			)
+
+		when actions.DISMISS_ERROR
+			Object.assign({}, state,
+				error: null
 			)
 
 		else state

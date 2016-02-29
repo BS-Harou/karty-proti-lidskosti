@@ -41,7 +41,7 @@ storage = window.sessionStorage
 
 app.socket = {}
 
-app.socket = socket = io 'ws://localhost:3000'
+app.socket = socket = io 'ws://192.168.1.40:3000', 'reconnectionAttempts': 3
 socket.on 'connect', ->
 	console.log 'Socket.io: connected to server'
 
@@ -59,6 +59,8 @@ loader =
 	isLoaded: ->
 		@cards and @games and @user
 
+socket.on 'reconnect_failed', ->
+	store.dispatch userActions.failedLogin 'Spojení ztraceno'
 
 socket.on 'data', (msg) ->
 
@@ -85,7 +87,7 @@ socket.on 'data', (msg) ->
 	if msg?.endpoint is '/user/login'
 		data = JSON.safeParse msg.value
 		if not data or data.error
-			store.dispatch userActions.failedLogin()
+			store.dispatch userActions.failedLogin data?.error
 			return
 		storage.setItem 'session', data.session
 		store.dispatch userActions.receiveUser data
@@ -93,7 +95,8 @@ socket.on 'data', (msg) ->
 	if msg?.endpoint is '/user/sessionLogin'
 		data = JSON.safeParse msg.value
 		if not data or data.error
-			# TODO store.dispatch userActions.failedLogin()
+			storage.removeItem 'session'
+			store.dispatch userActions.failedLogin data?.error
 		else
 			store.dispatch userActions.receiveUser data
 		loader.user = yes

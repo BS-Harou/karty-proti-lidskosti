@@ -1,12 +1,12 @@
 one-line()
-	white-space: nowrap
 	overflow: hidden
 	text-overflow: ellipsis
+	white-space: nowrap
 
 .score
+	background: white
 	border-top: 1px solid #ccc
 	padding: 0
-	background: white
 	
 .player-row
 	display: flex
@@ -23,6 +23,11 @@ one-line()
 	
 .player-score
 	one-line()
-	background: blue
+	flex: 0 0 3rem
+	
+.player-labels
+	one-line()
 	flex: 1 1 auto
 	
+	:global(.label)
+		margin-right: 0.3rem

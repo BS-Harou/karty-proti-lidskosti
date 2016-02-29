@@ -13,22 +13,39 @@ module.exports = React.createClass
 
 	displayName: 'Game'
 
+	isUserCzar: ->
+		@props.game.players[@props.game.czarIndex]?.id is @props.user.data.id
+
 	pickCard: (cardId) ->
+		return if @isUserCzar()
 		if @props.cards.items[cardId]
 			@props.actions.pickCard @props.game.id, cardId
 		return
 
 	pickWinner: (userId) ->
+		return unless @isUserCzar()
 		@props.actions.pickWinner @props.game.id, userId
 		return
 
+	getTotalWhiteCardsNeeded: ->
+		pickingPlayers = @props.game.players.filter (player, index) =>
+			return no if @props.game.players[@props.game.czarIndex]?.id is player.id
+			return no unless player.state is 'online'
+			return yes
+		@props.game.cardsRequired * pickingPlayers.length
+
 	render: ->
-		columnClass = css['game']
-		if card = @props.cards.items[@props.game.card]
+		###
+			BLACK CARD
+		###
+		if card = @props.cards.items[@props.game.blackCard]
 			blackCard = <CardBox key={card.id} type={card.type} customClassNames={[css['card'], css['black-card']]}>
 				{card.value}
 			</CardBox>
 
+		###
+			MINE PLAYER
+		###
 		me = null
 		@props.game.players.some (player) => 
 			if player.id is @props.user.data.id
@@ -42,23 +59,29 @@ module.exports = React.createClass
 					{card.value}
 				</CardBox>
 
+		###
+			PICKED CARD GROUPS or STATE
+		###
 		pickedCards = []
-
-		cardsToPick = @props.game.cardsRequired * Object.keys(@props.game.players).length
+		cardsToPick = @getTotalWhiteCardsNeeded()
 		alreadyPickedReducer = (count, playerId) =>
 			amountPickedByPlayer = @props.game.pickedCards[playerId]?.length or 0
 			count + amountPickedByPlayer
 		alreadyPicked = Object.keys(@props.game.pickedCards).reduce alreadyPickedReducer, 0
 		amountPickedByMe = @props.game.pickedCards[me.id]?.length or 0
 
-		if amountPickedByMe < @props.game.cardsRequired
+		if @isUserCzar() and alreadyPicked < cardsToPick
+			pickedCards = <div className={css['payers-picking-cards']}>JSI CZAR</div>
+		else if not @isUserCzar() and amountPickedByMe < @props.game.cardsRequired
 			pickedCards = <div className={css['payers-picking-cards']}>VYBERTE KARTU</div>
 		else if alreadyPicked < cardsToPick
 			pickedCards = <div className={css['payers-picking-cards']}>HRÁČI VYBÍRAJÍ KARTY</div>
 		else
 
-			for playerId, playerPickedCards of @props.game.pickedCards
-				playerPickedCardIds = playerPickedCards.map (pickedCard) => pickedCard.cardId
+			# for playerId, playerPickedCards of @props.game.pickedCards
+			@props.game.randomPlayerOrder.forEach (playerId) =>
+				return unless playerPickedCards = @props.game.pickedCards[playerId]
+				playerPickedCardIds = playerPickedCards.map (pickedCard) -> pickedCard.cardId
 				pickedCards.push(
 					<CardGroup 
 						cards={@props.cards}
@@ -71,7 +94,8 @@ module.exports = React.createClass
 				)
 
 		<div className={css['game']}>
-			<div className={css['played-cards']}>
+			<h2 className={css['heading']}>Hra : {@props.game.name}</h2>
+			<div className={css['picked-cards']}>
 				{blackCard}
 				{pickedCards}
 			</div>

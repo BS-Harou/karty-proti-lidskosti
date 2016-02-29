@@ -36,7 +36,6 @@ pickCard = (data, user) ->
 
 pickWinner = (data, user) ->
 	return no unless game = gameStore.getGame data.gameId
-	console.log 'USER ID: ', data.userId
 	game.pickWinner data.userId, user.id
 
 module.exports =

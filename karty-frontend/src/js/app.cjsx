@@ -34,10 +34,10 @@ App = React.createClass
       # el = <ActiveCards cards={@props.cards} />
       el = <GameList games={@props.games} actions={@props.actions} />
     else
-      el = <Login loginUser={@props.actions.loginUser} />
+      el = <Login user={@props.user} actions={@props.actions} />
 
     if @props.user.data?.id
-      menu = <Menu actions={@props.actions} />
+      menu = <Menu actions={@props.actions} user={@props.user} />
 
     return (
       <div>

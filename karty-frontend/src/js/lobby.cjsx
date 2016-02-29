@@ -36,11 +36,6 @@ module.exports = React.createClass
 		@props.actions.startGame @props.game.id
 		return
 
-	leaveGame: ->
-		@props.actions.leaveGame @props.game.id
-		return
-
-
 	render: ->
 		me = null
 		players = @props.game.players.map (player) => 
@@ -58,9 +53,9 @@ module.exports = React.createClass
 			readyEl = <div className="btn btn-primary" onClick={@handleReady}>Jsem připraven</div>
 
 		<div className={css['lobby']}>
+			<h2>Lobby : {@props.game.name}</h2>
 			{players}
 			<div className={css['buttons']}>
-				<div className="btn btn-danger" onClick={@leaveGame}>Opustit hru</div>
 				{readyEl}
 				{startGameBtn}
 			</div>

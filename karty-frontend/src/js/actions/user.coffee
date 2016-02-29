@@ -6,6 +6,8 @@ types =
 	SESSION_LOGIN: 'session-login'
 	LOGOUT: 'logout'
 	LOGGED_OUT: 'logged-out'
+	FAILED_LOGIN: 'failed_login'
+	DISMISS_ERROR: 'dismiss_error'
 
 actions =
 	
@@ -30,6 +32,13 @@ actions =
 
 	loggedOut: ->
 		type: types.LOGGED_OUT
+
+	failedLogin: (errorMessage = '') ->
+		type: types.FAILED_LOGIN
+		errorMessage: errorMessage
+
+	dismissError: ->
+		type: types.DISMISS_ERROR
 	  
 	receiveUser: (user) ->
 		type: types.RECEIVE_USER

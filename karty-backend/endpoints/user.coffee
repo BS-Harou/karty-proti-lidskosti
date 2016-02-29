@@ -1,7 +1,7 @@
 ERRORS =
-	userExists: { error: 'User already exists' }
-	invalidUser: { error: 'No user with such id' }
-	noUser: { error: 'No user for this socket' }
+	userExists: { error: 'Uživatel již existuje' }
+	invalidUser: { error: 'Uživatel neexistuje' }
+	noUser: { error: 'Nepodařilo se odhlásit. Nejste přihlášen.' }
 
 
 login = (nickname) ->
@@ -15,7 +15,6 @@ sessionLogin = (session) ->
 	return user
 
 logout = (userId) ->
-	console.log 'LOGOUT: ', userId
 	user = userStore.getUser userId
 	if user
 		userStore.removeUser userId
@@ -29,13 +28,11 @@ module.exports =
 	login: (data, response, socketData) ->
 		loggedUser = login data
 		socketData.user = loggedUser
-		console.log 'LOGGED USER: ', loggedUser
 		response loggedUser
 
 	sessionLogin: (data, response, socketData) ->
 		loggedUser = sessionLogin data
 		socketData.user = loggedUser
-		console.log 'SESSION LOGGED USER: ', loggedUser
 		response loggedUser
 
 	logout: (data, response, socketData) ->

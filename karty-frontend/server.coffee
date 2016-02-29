@@ -23,4 +23,4 @@ handleListen = (err, result) ->
   else
     console.log "Listening at localhost:#{port}"
 
-server.listen port, 'localhost', handleListen
+server.listen port, '0.0.0.0', handleListen

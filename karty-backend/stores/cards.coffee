@@ -9,11 +9,15 @@ parseCards = (data, type) ->
 		value: cardValue
 		type: type
 
-whiteCards = fs.readFileSync 'data/white-cards.txt', 'utf8'
-blackCards = fs.readFileSync 'data/black-cards.txt', 'utf8'
+packages = ['proti-lidskosti', 'pretendyoure']
+whiteCards = []
+blackCards  = []
 
-whiteCards = parseCards whiteCards, 'white'
-blackCards = parseCards blackCards, 'black'
+for pkg in packages
+	whiteDb = fs.readFileSync "data/#{pkg}/white-cards.txt", 'utf8'
+	blackDb = fs.readFileSync "data/#{pkg}/black-cards.txt", 'utf8'
+	whiteCards = whiteCards.concat parseCards whiteDb, 'white'
+	blackCards = blackCards.concat parseCards blackDb, 'black'
 
 allCards = whiteCards.concat blackCards
 
@@ -39,7 +43,7 @@ class Deck
 		drawnCards = []
 		while drawnCards.length < amount
 			@cards = @allCards.splice() unless @cards.length
-			index = Math.round(Math.random() * @cards.length)
+			index = Math.floor(Math.random() * @cards.length)
 			drawnCards.push @cards[index]
 			@cards.splice index, 1
 		return drawnCards
